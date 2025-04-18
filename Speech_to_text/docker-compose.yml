@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  backend:
+    build: ./backend
+    container_name: whisper-backend
+    restart: always
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend/audio_files:/app/audio_files
+    networks:
+      - whisper-network
+
+  frontend:
+    build: ./frontend
+    container_name: whisper-frontend
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on:
+      - backend
+    environment:
+      - BACKEND_URL=http://backend:8000/transcribe/
+    networks:
+      - whisper-network
+
+networks:
+  whisper-network:
+    driver: bridge

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trascrizione Audio con Whisper</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Trascrizione Audio AI</h1>
+            <p class="subtitle">Carica un file audio o registra la tua voce per ottenere una trascrizione immediata</p>
+        </header>
+
+        <main>
+            <section class="upload-section">
+                <h2>Carica un file audio</h2>
+                <div class="drop-area" id="drop-area">
+                    <form class="my-form">
+                        <p>Trascina qui il file audio o</p>
+                        <input type="file" id="audioFile" accept="audio/*" class="input-file">
+                        <label for="audioFile" class="file-label">Scegli un file</label>
+                    </form>
+                    <p class="file-info" id="file-info">Nessun file selezionato</p>
+                </div>
+                <button id="uploadBtn" class="btn primary-btn" disabled>Carica e Trascrivi Audio</button>
+            </section>
+
+            <div class="divider">
+                <span>oppure</span>
+            </div>
+
+            <section class="record-section">
+                <h2>Registra la tua voce</h2>
+                <div class="record-controls">
+                    <button id="startRecordBtn" class="btn record-btn">
+                        <span class="record-icon"></span>
+                        Inizia Registrazione
+                    </button>
+                    <button id="stopRecordBtn" class="btn stop-btn" disabled>
+                        <span class="stop-icon"></span>
+                        Stop Registrazione
+                    </button>
+                </div>
+                <div class="record-status" id="record-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">Pronto per registrare</span>
+                </div>
+            </section>
+
+            <section class="result-section">
+                <h2>Trascrizione</h2>
+                <div class="result-box" id="result-container">
+                    <div id="loading" class="loading-indicator hidden">
+                        <div class="spinner"></div>
+                        <p>Elaborazione in corso...</p>
+                    </div>
+                    <p id="result" class="result-text">La trascrizione apparirà qui...</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Powered by Devin IL RE</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
